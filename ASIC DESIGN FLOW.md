@@ -1,38 +1,94 @@
-ASIC: APPLICATION SPECIFIC INTEGRATED CHIP
-specification
-architecture
-behavioural modelling
-rtl design coding
-functional verification
-logic synthesis
-logic verification testing
-physical design
-physical verification sign off
-fabrication
-packaging and testing
-chip to market
+# ASIC Design Flow
 
-design flow starts with the given set of specifications/requirements/features that chip must posesess i.e. in terms of functionality how much area it must consume with what clock freq it must operate
-As per the specification from the customer top level engineers design the architecture of the chip in form of block diagram.
-what must ne the different blocks the design must contain like ALU, memory unit etc and its interconnections
-cost of the chip is also estimated at this stage and if everything is fine. it is proceeded to the RTL design
-Now, from the architecture
-RTL engineers derive function of the design and write some RTL code using HDL and that will be understood by the tool
-RTL- is the register transfer level which includes interconnections of the comninational elements like logic gates and sequential elements like registers as per the functionality
-Behavioral model represents the algorithmic way of representing the behaviour of the design It also uses some mathematical and arithmatic expressions.
-Funcational verification i.e to verify and cross check the RTL code whether it satisfies the functionality and specifications. If there are any errors, the code is modified. Alterations are made until the specifications are satisfied.
-Logic synthesis- In this stage, the tool converts the RTL behaviour model code into structural verilog code which is a gate level netlist.
-Logic synthesis happens in 3 stages
-i) translate:- the tool converts the high level rtl cricuit into its corresponding logic gates. The funcationality remains the same however.
-ii) technology mapping:- here the tool maps the logic gates with the required technology that we are designing in i.e 28nm,14n, etc.
-iii) Optimization:- Tools does optimization in terms of power, area timing to get the best performance
-DFT insertion is also done at this stage by the DFT team
-now, gate level simulation i.e logic verification and testing is done to check whether it performs the required logic and iterations are done until there are no errors. The o/p of logic sysnthesis are gate level netlist and sdc constrainst file which are given as an i/p to the physical design
-the gate level netlist is converted to the gds- graphical database stream. It is nothing but transistor level layour format of a design whuch be manufacturable.
-various steps involved in PD are design import floorplaning power plans CDS,and routing with optimization in each stage.
-now, obatained gds transistor level layout file is sent for verification and sign off where different checks are performed.
-drc,erc,lvs,timing analysis, power analysis crosstalk analysis.
-iterations and modifications are made until we meet the requirement 
-the gds file after verification is sent to the foundary and this process is called tapeout for fabrication.
-Fabricated chip is packeged and is tested again for any bugs.
-after final testing bug free IC is released to the market.
+## Overview
+**ASIC** stands for **Application Specific Integrated Chip** - a custom-designed integrated circuit for a specific application or purpose.
+
+## ASIC Design Flow Stages
+
+### 1. Specification
+- Design flow starts with a set of specifications/requirements/features.
+- Defines functionality, area constraints, and operating clock frequency.
+- Customer provides requirements that the chip must possess.
+
+### 2. Architecture Design
+- Top-level engineers design chip architecture as block diagrams.
+- High level chip architecture specification includes:-
+  * Functionality/ Application
+  * Performance
+  * Power, Area, Schedule
+- Determines different blocks required (ALU, memory unit, etc.) and their interconnections.
+- Cost estimation is performed at this stage.
+- Proceed to RTL design if everything meets requirements.
+
+### 3. RTL Design Coding
+- RTL engineers derive design functions from architecture.
+- Write RTL code using HDL (Hardware Description Language)
+- **RTL (Register Transfer Level)** includes interconnections of:
+  - Combinational elements (logic gates)
+  - Sequential elements (registers)
+  - All designed as per functionality requirements
+- Tools :- IES (cadence), VCS (Synopsys), Questasim (Mentor Graphics).
+
+### 4. Behavioral Modelling
+- Represents algorithmic behavior of the design.
+- Uses mathematical and arithmetic expressions.
+- High-level representation of design functionality.
+
+### 5. Functional Verification (FV/DV)
+- A process used to demonstrate the functional correctness of a design.
+- Verify and cross-check RTL code against specifications.
+- Ensure functionality meets requirements.
+- Code modifications and alterations made until specifications are satisfied.
+- Iterative process until all errors are resolved.
+
+### 6. Logic Synthesis
+Tool converts RTL behavioral model code into structural Verilog code (gate-level netlist).
+
+**Three Stages of Logic Synthesis:**
+1. **Translate**: Tool converts high-level RTL circuit into corresponding logic gates (functionality remains unchanged).
+2. **Technology Mapping**: Tool maps logic gates to required technology node (28nm, 14nm, etc.).
+3. **Optimization**: Tool optimizes for power, area, and timing to achieve best performance.
+
+**Additional Step**: DFT (Design for Test) insertion performed by DFT team
+
+### 7. Logic Verification & Testing
+- Gate-level simulation to verify required logic functionality
+- Iterations performed until no errors remain
+- **Outputs**: Gate-level netlist and SDC constraints file
+- These outputs serve as inputs to Physical Design stage
+
+### 8. Physical Design
+Converts gate-level netlist to GDS (Graphical Database Stream) - transistor-level layout format for manufacturing
+
+**Physical Design Steps:**
+- Design import
+- Floorplanning
+- Power planning
+- Clock Tree Synthesis (CTS)
+- Routing with optimization at each stage
+
+### 9. Physical Verification & Sign-off
+GDS transistor-level layout file undergoes verification with various checks:
+
+- **DRC** (Design Rule Checking)
+- **ERC** (Electrical Rule Checking)
+- **LVS** (Layout vs Schematic)
+- **Timing Analysis**
+- **Power Analysis**
+- **Crosstalk Analysis**
+
+Iterations and modifications made until all requirements are met
+
+### 10. Fabrication
+- Verified GDS file sent to foundry
+- Process called **Tapeout**
+- Chip is manufactured/fabricated
+
+### 11. Packaging & Testing
+- Fabricated chip is packaged
+- Final testing performed for any bugs or issues
+- Environmental and reliability testing
+
+### 12. Chip to Market
+- Bug-free IC is released to market
+- Final product available for commercial use
