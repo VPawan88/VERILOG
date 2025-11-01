@@ -56,14 +56,16 @@ Tool converts RTL behavioral model code into structural Verilog code (gate-level
 - Iterations performed until no errors remain
 - **Outputs**: Gate-level netlist and SDC constraints file
 - These outputs serve as inputs to Physical Design stage
+STA and DFT can be performed after this.
 
 ### 8. Physical Design
-Converts gate-level netlist to GDS (Graphical Database Stream) - transistor-level layout format for manufacturing
+Converts gate-level netlist to GDS (Graphics Data System) - transistor-level layout format for manufacturing
 
 **Physical Design Steps:**
 - Design import
 - Floorplanning
 - Power planning
+- Placement
 - Clock Tree Synthesis (CTS)
 - Routing with optimization at each stage
 
